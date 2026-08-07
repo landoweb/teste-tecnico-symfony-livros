@@ -319,18 +319,39 @@ Recursos implementados:
 
 # Testes
 
-O projeto está preparado para utilização do PHPUnit.
+O projeto possui testes unitários implementados utilizando **PHPUnit**, cobrindo as principais regras das entidades da aplicação.
 
-Os testes podem ser executados através de:
+Atualmente a suíte contempla:
+
+- **Autor**
+- **Assunto**
+- **Livro**
+
+Total da suíte:
+
+- **21 testes**
+- **36 assertions**
+
+Os testes encontram-se no diretório:
+
+```
+tests/
+```
+
+Para executá-los:
 
 ```bash
 php bin/phpunit
 ```
 
-Os testes unitários encontram-se no diretório:
+Resultado esperado:
 
 ```
-tests/
+PHPUnit 13.x
+
+.....................
+
+OK (21 tests, 36 assertions)
 ```
 
 ---
@@ -350,6 +371,7 @@ tests/
 - Logs utilizando PSR-3 Logger
 - Modais Bootstrap para confirmação de exclusão
 - Organização em camadas (Controller, Entity, Repository e Form)
+- Testes unitários utilizando PHPUnit
 
 ---
 
