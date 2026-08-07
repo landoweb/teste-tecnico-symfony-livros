@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Novo autor{% endblock %}
+
+{% block body %}
+
+<div class="mb-4">
+    <h1 class="h3 mb-1">
+        <i class="bi bi-person-plus me-2"></i>
+        Novo autor
+    </h1>
+
+    <p class="text-secondary mb-0">
+        Cadastre um novo autor no catálogo.
+    </p>
+</div>
+
+{{ include('autor/_form.html.twig') }}
+
+{% endblock %}

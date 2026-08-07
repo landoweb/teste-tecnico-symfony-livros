@@ -1,0 +1,110 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detalhes do livro{% endblock %}
+
+{% block body %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="h3 mb-1">
+            <i class="bi bi-book me-2"></i>
+            Detalhes do livro
+        </h1>
+
+        <p class="text-secondary mb-0">
+            Visualize as informações cadastradas.
+        </p>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+
+        <table class="table align-middle mb-0">
+            <tbody>
+                <tr>
+                    <th width="220">ID</th>
+                    <td>{{ livro.id }}</td>
+                </tr>
+
+                <tr>
+                    <th>Título</th>
+                    <td class="fw-semibold">{{ livro.titulo }}</td>
+                </tr>
+
+                <tr>
+                    <th>Editora</th>
+                    <td>{{ livro.editora }}</td>
+                </tr>
+
+                <tr>
+                    <th>Edição</th>
+                    <td>{{ livro.edicao }}</td>
+                </tr>
+
+                <tr>
+                    <th>Ano de publicação</th>
+                    <td>{{ livro.anoPublicacao }}</td>
+                </tr>
+
+                <tr>
+                    <th>Valor</th>
+                    <td>
+                        R$ {{ livro.valor|number_format(2, ',', '.') }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Autores</th>
+                    <td>
+                        {% for autor in livro.autores %}
+                            <span class="badge text-bg-secondary me-1">
+                                {{ autor.nome }}
+                            </span>
+                        {% else %}
+                            <span class="text-secondary">
+                                Nenhum autor associado.
+                            </span>
+                        {% endfor %}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Assuntos</th>
+                    <td>
+                        {% for assunto in livro.assuntos %}
+                            <span class="badge text-bg-light border me-1">
+                                {{ assunto.descricao }}
+                            </span>
+                        {% else %}
+                            <span class="text-secondary">
+                                Nenhum assunto associado.
+                            </span>
+                        {% endfor %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<div class="mt-4 d-flex gap-2">
+
+    <a href="{{ path('app_livro_index') }}"
+       class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left me-1"></i>
+        Voltar para a lista
+    </a>
+
+    <a href="{{ path('app_livro_edit', {'id': livro.id}) }}"
+       class="btn btn-primary">
+        <i class="bi bi-pencil me-1"></i>
+        Editar
+    </a>
+
+    {{ include('livro/_delete_form.html.twig') }}
+
+</div>
+
+{% endblock %}

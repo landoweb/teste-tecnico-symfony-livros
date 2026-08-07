@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar assunto{% endblock %}
+
+{% block body %}
+
+<div class="mb-4">
+
+    <h1 class="h3 mb-1">
+        <i class="bi bi-pencil me-2"></i>
+        Editar assunto
+    </h1>
+
+    <p class="text-secondary mb-0">
+        Atualize as informações do assunto.
+    </p>
+
+</div>
+
+{{ include('assunto/_form.html.twig', {
+    button_label: 'Atualizar'
+}) }}
+
+<div class="mt-3">
+    {{ include('assunto/_delete_form.html.twig') }}
+</div>
+
+{% endblock %}

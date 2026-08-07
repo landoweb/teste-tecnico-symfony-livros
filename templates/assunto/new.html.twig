@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Novo assunto{% endblock %}
+
+{% block body %}
+
+<div class="mb-4">
+
+    <h1 class="h3 mb-1">
+        <i class="bi bi-tag me-2"></i>
+        Novo assunto
+    </h1>
+
+    <p class="text-secondary mb-0">
+        Cadastre um novo assunto.
+    </p>
+
+</div>
+
+{{ include('assunto/_form.html.twig') }}
+
+{% endblock %}

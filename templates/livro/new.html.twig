@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Novo livro{% endblock %}
+
+{% block body %}
+
+<div class="mb-4">
+
+    <h1 class="h3 mb-1">
+        <i class="bi bi-book-half me-2"></i>
+        Novo livro
+    </h1>
+
+    <p class="text-secondary mb-0">
+        Cadastre um novo livro no catálogo.
+    </p>
+
+</div>
+
+<div class="card shadow-sm">
+
+    <div class="card-body">
+
+        {{ include('livro/_form.html.twig') }}
+
+    </div>
+
+</div>
+
+<div class="mt-3">
+
+    <a href="{{ path('app_livro_index') }}"
+       class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left me-1"></i>
+        Voltar para a lista
+    </a>
+
+</div>
+
+{% endblock %}

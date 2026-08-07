@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catálogo de Livros{% endblock %}
+
+{% block body %}
+
+<div class="p-5 mb-4 bg-white rounded-3 shadow-sm">
+    <div class="container-fluid py-3">
+
+        <h1 class="display-5 fw-bold">
+            📚 Catálogo de Livros
+        </h1>
+
+        <p class="lead">
+            Sistema desenvolvido em Symfony 7.4, Doctrine ORM e Twig.
+        </p>
+
+        <hr>
+
+        <p>
+            Utilize o menu acima para gerenciar Livros, Autores e Assuntos.
+        </p>
+
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-sm h-100">
+
+            <div class="card-body">
+
+                <h4>📚 Livros</h4>
+
+                <p>
+                    Cadastro e manutenção dos livros.
+                </p>
+
+                <a href="{{ path('app_livro_index') }}" class="btn btn-primary">
+                    Acessar
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card shadow-sm h-100">
+
+            <div class="card-body">
+
+                <h4>👤 Autores</h4>
+
+                <p>
+                    Cadastro dos autores.
+                </p>
+
+                <a href="{{ path('app_autor_index') }}" class="btn btn-success">
+                    Acessar
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card shadow-sm h-100">
+
+            <div class="card-body">
+
+                <h4>🏷 Assuntos</h4>
+
+                <p>
+                    Cadastro dos assuntos.
+                </p>
+
+                <a href="{{ path('app_assunto_index') }}" class="btn btn-warning">
+                    Acessar
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
