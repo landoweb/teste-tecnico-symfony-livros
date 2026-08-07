@@ -3,24 +3,64 @@
 {% block title %}Autor{% endblock %}
 
 {% block body %}
-    <h1>Autor</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ autor.id }}</td>
-            </tr>
-            <tr>
-                <th>Nome</th>
-                <td>{{ autor.nome }}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="d-flex justify-content-between align-items-center mb-4">
 
-    <a href="{{ path('app_autor_index') }}">back to list</a>
+    <div>
+        <h1 class="h3 mb-1">
+            <i class="bi bi-person me-2"></i>
+            Autor
+        </h1>
 
-    <a href="{{ path('app_autor_edit', {'id': autor.id}) }}">edit</a>
+        <p class="text-secondary mb-0">
+            Visualize os dados do autor cadastrado.
+        </p>
+    </div>
 
-    {{ include('autor/_delete_form.html.twig') }}
+    <a href="{{ path('app_autor_index') }}"
+       class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left me-1"></i>
+        Voltar
+    </a>
+
+</div>
+
+<div class="card shadow-sm">
+
+    <div class="card-body">
+
+        <table class="table align-middle mb-0">
+            <tbody>
+
+                <tr>
+                    <th style="width: 180px;">ID</th>
+                    <td>{{ autor.id }}</td>
+                </tr>
+
+                <tr>
+                    <th>Nome</th>
+                    <td class="fw-semibold">
+                        {{ autor.nome }}
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="card-footer bg-light d-flex gap-2">
+
+        <a href="{{ path('app_autor_edit', {'id': autor.id}) }}"
+           class="btn btn-primary">
+            <i class="bi bi-pencil me-1"></i>
+            Editar
+        </a>
+
+        {{ include('autor/_delete_form.html.twig') }}
+
+    </div>
+
+</div>
+
 {% endblock %}

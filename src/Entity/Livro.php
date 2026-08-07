@@ -9,6 +9,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LivroRepository::class)]
+#[ORM\Table(name: 'livro')]
 class Livro
 {
     #[ORM\Id]
@@ -39,13 +40,11 @@ class Livro
     #[ORM\JoinColumn(
         name: 'livro_id',
         referencedColumnName: 'id',
-        nullable: false,
         onDelete: 'CASCADE'
     )]
     #[ORM\InverseJoinColumn(
         name: 'autor_id',
         referencedColumnName: 'id',
-        nullable: false,
         onDelete: 'CASCADE'
     )]
     private Collection $autores;
@@ -58,13 +57,11 @@ class Livro
     #[ORM\JoinColumn(
         name: 'livro_id',
         referencedColumnName: 'id',
-        nullable: false,
         onDelete: 'CASCADE'
     )]
     #[ORM\InverseJoinColumn(
         name: 'assunto_id',
         referencedColumnName: 'id',
-        nullable: false,
         onDelete: 'CASCADE'
     )]
     private Collection $assuntos;

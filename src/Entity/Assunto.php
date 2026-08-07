@@ -8,6 +8,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AssuntoRepository::class)]
+#[ORM\Table(name: 'assunto')]
+#[ORM\Index(name: 'idx_assunto_descricao', columns: ['descricao'])]
+#[ORM\UniqueConstraint(name: 'uniq_assunto_descricao', columns: ['descricao'])]
 class Assunto
 {
     #[ORM\Id]

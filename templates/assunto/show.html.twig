@@ -3,24 +3,66 @@
 {% block title %}Assunto{% endblock %}
 
 {% block body %}
-    <h1>Assunto</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ assunto.id }}</td>
-            </tr>
-            <tr>
-                <th>Descricao</th>
-                <td>{{ assunto.descricao }}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="d-flex justify-content-between align-items-center mb-4">
 
-    <a href="{{ path('app_assunto_index') }}">back to list</a>
+    <div>
+        <h1 class="h3 mb-1">
+            <i class="bi bi-tags me-2"></i>
+            Assunto
+        </h1>
 
-    <a href="{{ path('app_assunto_edit', {'id': assunto.id}) }}">edit</a>
+        <p class="text-secondary mb-0">
+            Visualize os dados do assunto cadastrado.
+        </p>
+    </div>
 
-    {{ include('assunto/_delete_form.html.twig') }}
+    <a href="{{ path('app_assunto_index') }}"
+       class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left me-1"></i>
+        Voltar
+    </a>
+
+</div>
+
+<div class="card shadow-sm">
+
+    <div class="card-body">
+
+        <table class="table align-middle mb-0">
+
+            <tbody>
+
+                <tr>
+                    <th style="width: 180px;">ID</th>
+                    <td>{{ assunto.id }}</td>
+                </tr>
+
+                <tr>
+                    <th>Descrição</th>
+                    <td class="fw-semibold">
+                        {{ assunto.descricao }}
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="card-footer bg-light d-flex gap-2">
+
+        <a href="{{ path('app_assunto_edit', {'id': assunto.id}) }}"
+           class="btn btn-primary">
+            <i class="bi bi-pencil me-1"></i>
+            Editar
+        </a>
+
+        {{ include('assunto/_delete_form.html.twig') }}
+
+    </div>
+
+</div>
+
 {% endblock %}

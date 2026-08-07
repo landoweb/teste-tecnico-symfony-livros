@@ -1,14 +1,89 @@
-<form method="post"
-      action="{{ path('app_livro_delete', {'id': livro.id}) }}"
-      onsubmit="return confirm('Tem certeza que deseja excluir este livro?');">
+<button
+    type="button"
+    class="btn btn-outline-danger"
+    data-bs-toggle="modal"
+    data-bs-target="#modalExcluirLivro"
+>
+    <i class="bi bi-trash me-1"></i>
+    Excluir livro
+</button>
 
-    <input type="hidden"
-           name="_token"
-           value="{{ csrf_token('delete' ~ livro.id) }}">
+<div
+    class="modal fade"
+    id="modalExcluirLivro"
+    tabindex="-1"
+    aria-labelledby="modalExcluirLivroLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-dialog-centered">
 
-    <button class="btn btn-outline-danger">
-        <i class="bi bi-trash me-1"></i>
-        Excluir livro
-    </button>
+        <div class="modal-content">
 
-</form>
+            <div class="modal-header">
+
+                <h5
+                    class="modal-title"
+                    id="modalExcluirLivroLabel"
+                >
+                    Confirmar exclusão
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Fechar"
+                ></button>
+
+            </div>
+
+            <div class="modal-body">
+
+                Tem certeza que deseja excluir o livro
+                <strong>{{ livro.titulo }}</strong>?
+
+                <p class="text-secondary small mt-2 mb-0">
+                    Esta ação não poderá ser desfeita.
+                </p>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    data-bs-dismiss="modal"
+                >
+                    Cancelar
+                </button>
+
+                <form
+                    method="post"
+                    action="{{ path('app_livro_delete', {'id': livro.id}) }}"
+                    class="d-inline"
+                >
+
+                    <input
+                        type="hidden"
+                        name="_token"
+                        value="{{ csrf_token('delete' ~ livro.id) }}"
+                    >
+
+                    <button
+                        type="submit"
+                        class="btn btn-danger"
+                    >
+                        <i class="bi bi-trash me-1"></i>
+                        Excluir
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

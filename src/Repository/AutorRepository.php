@@ -16,28 +16,28 @@ class AutorRepository extends ServiceEntityRepository
         parent::__construct($registry, Autor::class);
     }
 
-    //    /**
-    //     * @return Autor[] Returns an array of Autor objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('a')
-    //            ->andWhere('a.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('a.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Autor
-    //    {
-    //        return $this->createQueryBuilder('a')
-    //            ->andWhere('a.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    /**
+     * Exemplo de implementação de paginação utilizando Doctrine QueryBuilder.
+     *
+     * Em projetos com grande volume de registros, normalmente optamos por
+     * bibliotecas consolidadas como o KnpPaginatorBundle, responsáveis por
+     * abstrair toda a lógica de paginação, ordenação e navegação entre páginas.
+     *
+     * Neste projeto, a paginação não foi implementada por não haver necessidade,
+     * já que o volume de dados previsto é reduzido.
+     *
+     * Exemplo:
+     *
+     * public function findPaginado(int $pagina, int $limite): array
+     * {
+     *     $offset = ($pagina - 1) * $limite;
+     *
+     *     return $this->createQueryBuilder('a')
+     *         ->orderBy('a.nome', 'ASC')
+     *         ->setFirstResult($offset)
+     *         ->setMaxResults($limite)
+     *         ->getQuery()
+     *         ->getResult();
+     * }
+     */
 }

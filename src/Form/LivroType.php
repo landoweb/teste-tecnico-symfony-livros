@@ -7,7 +7,9 @@ use App\Entity\Autor;
 use App\Entity\Livro;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,28 +18,45 @@ class LivroType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('titulo')
-            ->add('editora')
-            ->add('edicao')
-            ->add('anoPublicacao')
+
+            ->add('titulo', TextType::class, [
+                'label' => 'Título'
+            ])
+
+            ->add('editora', TextType::class, [
+                'label' => 'Editora'
+            ])
+
+            ->add('edicao', IntegerType::class, [
+                'label' => 'Edição'
+            ])
+
+            ->add('anoPublicacao', TextType::class, [
+                'label' => 'Ano de publicação'
+            ])
+
             ->add('valor', MoneyType::class, [
+                'label' => 'Valor',
                 'currency' => 'BRL',
                 'scale' => 2,
-                'html5' => true,
+                'html5' => false,
             ])
+
             ->add('autores', EntityType::class, [
+                'label' => 'Autores',
                 'class' => Autor::class,
                 'choice_label' => 'nome',
                 'multiple' => true,
                 'by_reference' => false,
             ])
+
             ->add('assuntos', EntityType::class, [
+                'label' => 'Assuntos',
                 'class' => Assunto::class,
                 'choice_label' => 'descricao',
                 'multiple' => true,
                 'by_reference' => false,
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

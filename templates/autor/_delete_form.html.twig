@@ -1,14 +1,89 @@
-<form method="post"
-      action="{{ path('app_autor_delete', {'id': autor.id}) }}"
-      onsubmit="return confirm('Tem certeza que deseja excluir este autor?');">
+<button
+    type="button"
+    class="btn btn-outline-danger"
+    data-bs-toggle="modal"
+    data-bs-target="#modalExcluirAutor"
+>
+    <i class="bi bi-trash me-1"></i>
+    Excluir autor
+</button>
 
-    <input type="hidden"
-           name="_token"
-           value="{{ csrf_token('delete' ~ autor.id) }}">
+<div
+    class="modal fade"
+    id="modalExcluirAutor"
+    tabindex="-1"
+    aria-labelledby="modalExcluirAutorLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-dialog-centered">
 
-    <button class="btn btn-outline-danger">
-        <i class="bi bi-trash me-1"></i>
-        Excluir autor
-    </button>
+        <div class="modal-content">
 
-</form>
+            <div class="modal-header">
+
+                <h5
+                    class="modal-title"
+                    id="modalExcluirAutorLabel"
+                >
+                    Confirmar exclusão
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Fechar"
+                ></button>
+
+            </div>
+
+            <div class="modal-body">
+
+                Tem certeza que deseja excluir o autor
+                <strong>{{ autor.nome }}</strong>?
+
+                <p class="text-secondary small mt-2 mb-0">
+                    Os relacionamentos com os livros serão removidos, porém os livros permanecerão cadastrados.
+                </p>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    data-bs-dismiss="modal"
+                >
+                    Cancelar
+                </button>
+
+                <form
+                    method="post"
+                    action="{{ path('app_autor_delete', {'id': autor.id}) }}"
+                    class="d-inline"
+                >
+
+                    <input
+                        type="hidden"
+                        name="_token"
+                        value="{{ csrf_token('delete' ~ autor.id) }}"
+                    >
+
+                    <button
+                        type="submit"
+                        class="btn btn-danger"
+                    >
+                        <i class="bi bi-trash me-1"></i>
+                        Excluir
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

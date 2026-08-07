@@ -4,16 +4,28 @@
 
 {% block body %}
 
-<div class="mb-4">
+<div class="d-flex justify-content-between align-items-center mb-4">
 
-    <h1 class="h3 mb-1">
-        <i class="bi bi-pencil-square me-2"></i>
-        Editar livro
-    </h1>
+    <div>
 
-    <p class="text-secondary mb-0">
-        Atualize as informações do livro.
-    </p>
+        <h1 class="h3 mb-1">
+            <i class="bi bi-pencil-square me-2"></i>
+            Editar livro
+        </h1>
+
+        <p class="text-secondary mb-0">
+            Atualize as informações do livro.
+        </p>
+
+    </div>
+
+    <a
+        href="{{ path('app_livro_index') }}"
+        class="btn btn-outline-secondary"
+    >
+        <i class="bi bi-arrow-left me-1"></i>
+        Voltar
+    </a>
 
 </div>
 
@@ -35,4 +47,8 @@
 
 </div>
 
+{% endblock %}
+
+{% block page_scripts %}
+    {{ include('livro/_inputmask.html.twig') }}
 {% endblock %}

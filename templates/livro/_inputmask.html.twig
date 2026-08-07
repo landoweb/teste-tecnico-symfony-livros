@@ -1,0 +1,54 @@
+<script>
+function inicializarMascaraValor() {
+
+    const campoValor = document.querySelector('#livro_valor');
+
+    if (!campoValor) {
+        return;
+    }
+
+    if (campoValor.inputmask) {
+        campoValor.inputmask.remove();
+    }
+
+    Inputmask('decimal', {
+        radixPoint: ',',
+        groupSeparator: '.',
+        digits: 2,
+        digitsOptional: false,
+        autoGroup: true,
+        rightAlign: false,
+        allowMinus: false,
+        substituteRadixPoint: true,
+        removeMaskOnSubmit: true,
+
+        onBeforeMask: function (valor) {
+
+            if (valor === null || valor === undefined || valor === '') {
+                return valor;
+            }
+
+            valor = String(valor);
+
+            // O Doctrine/Symfony entrega DECIMAL no formato 41.65.
+            // Antes da máscara brasileira, convertemos para 41,65.
+            if (valor.includes('.') && !valor.includes(',')) {
+                valor = valor.replace('.', ',');
+            }
+
+            return valor;
+        }
+
+    }).mask(campoValor);
+}
+
+document.addEventListener(
+    'DOMContentLoaded',
+    inicializarMascaraValor
+);
+
+document.addEventListener(
+    'turbo:load',
+    inicializarMascaraValor
+);
+</script>
