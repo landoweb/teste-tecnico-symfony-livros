@@ -7,6 +7,7 @@ use App\Form\LivroType;
 use App\Repository\LivroRepository;
 use Doctrine\DBAL\Exception as DBALException;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,10 +23,23 @@ final class LivroController extends AbstractController
     }
 
     #[Route(name: 'app_livro_index', methods: ['GET'])]
-    public function index(LivroRepository $livroRepository): Response
-    {
+    public function index(
+        LivroRepository $livroRepository,
+        Request $request,
+        PaginatorInterface $paginator
+    ): Response {
+        $query = $livroRepository
+            ->createQueryBuilder('l')
+            ->orderBy('l.titulo', 'ASC');
+
+        $livros = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            10
+        );
+
         return $this->render('livro/index.html.twig', [
-            'livros' => $livroRepository->findAll(),
+            'livros' => $livros,
         ]);
     }
 

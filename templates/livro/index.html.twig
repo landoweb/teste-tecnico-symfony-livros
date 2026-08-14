@@ -124,6 +124,15 @@
         </div>
 
     </div>
+
+    {% if livros.pageCount > 1 %}
+        <div class="card-footer bg-white">
+            <div class="d-flex justify-content-center">
+                {{ knp_pagination_render(livros) }}
+            </div>
+        </div>
+    {% endif %}
+        
 </div>
 
 {% endblock %}

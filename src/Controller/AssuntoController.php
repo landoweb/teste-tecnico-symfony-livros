@@ -8,6 +8,7 @@ use App\Repository\AssuntoRepository;
 use Doctrine\DBAL\Exception as DBALException;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,10 +24,23 @@ final class AssuntoController extends AbstractController
     }
 
     #[Route(name: 'app_assunto_index', methods: ['GET'])]
-    public function index(AssuntoRepository $assuntoRepository): Response
-    {
+    public function index(
+        AssuntoRepository $assuntoRepository,
+        Request $request,
+        PaginatorInterface $paginator
+    ): Response {
+        $query = $assuntoRepository
+            ->createQueryBuilder('a')
+            ->orderBy('a.descricao', 'ASC');
+
+        $assuntos = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            10
+        );
+
         return $this->render('assunto/index.html.twig', [
-            'assuntos' => $assuntoRepository->findAll(),
+            'assuntos' => $assuntos,
         ]);
     }
 

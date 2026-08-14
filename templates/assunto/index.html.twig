@@ -78,6 +78,13 @@
         </table>
 
     </div>
+
+    {% if assuntos.pageCount > 1 %}
+        <div class="d-flex justify-content-center mt-4">
+            {{ knp_pagination_render(assuntos) }}
+        </div>
+    {% endif %}
+
 </div>
 
 {% endblock %}

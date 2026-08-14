@@ -8,6 +8,7 @@ use App\Repository\AutorRepository;
 use Doctrine\DBAL\Exception as DBALException;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,10 +24,23 @@ final class AutorController extends AbstractController
     }
 
     #[Route(name: 'app_autor_index', methods: ['GET'])]
-    public function index(AutorRepository $autorRepository): Response
-    {
+    public function index(
+        AutorRepository $autorRepository,
+        Request $request,
+        PaginatorInterface $paginator
+    ): Response {
+        $query = $autorRepository
+            ->createQueryBuilder('a')
+            ->orderBy('a.nome', 'ASC');
+
+        $autors = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            10
+        );
+
         return $this->render('autor/index.html.twig', [
-            'autors' => $autorRepository->findAll(),
+            'autors' => $autors,
         ]);
     }
 
