@@ -12,7 +12,12 @@ class AssuntoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('descricao');
+            ->add('descricao', TextType::class, [
+                'label' => 'Descrição',
+                'attr' => [
+                    'maxlength' => 20,
+                ],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

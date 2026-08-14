@@ -20,11 +20,17 @@ class LivroType extends AbstractType
         $builder
 
             ->add('titulo', TextType::class, [
-                'label' => 'Título'
+                'label' => 'Título',
+                'attr' => [
+                    'maxlength' => 40,
+                ],
             ])
 
             ->add('editora', TextType::class, [
-                'label' => 'Editora'
+                'label' => 'Editora',
+                'attr' => [
+                    'maxlength' => 40,
+                ],                
             ])
 
             ->add('edicao', IntegerType::class, [
@@ -32,7 +38,10 @@ class LivroType extends AbstractType
             ])
 
             ->add('anoPublicacao', TextType::class, [
-                'label' => 'Ano de publicação'
+                'label' => 'Ano de publicação',
+                'attr' => [
+                    'maxlength' => 4,
+                ],                
             ])
 
             ->add('valor', MoneyType::class, [
@@ -48,6 +57,7 @@ class LivroType extends AbstractType
                 'choice_label' => 'nome',
                 'multiple' => true,
                 'by_reference' => false,
+                'autocomplete' => true,
             ])
 
             ->add('assuntos', EntityType::class, [
@@ -56,6 +66,7 @@ class LivroType extends AbstractType
                 'choice_label' => 'descricao',
                 'multiple' => true,
                 'by_reference' => false,
+                'autocomplete' => true,
             ]);
     }
 

@@ -12,8 +12,12 @@ class AutorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nome')
-        ;
+            ->add('nome', TextType::class, [
+                'label' => 'Nome',
+                'attr' => [
+                    'maxlength' => 40,
+                ],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
